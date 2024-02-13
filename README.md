@@ -1,4 +1,4 @@
-# Palworld Dedicated Server (Windows version of the server) running using Proton-GE
+# Palworld Dedicated Server running using Proton-GE
 
 ## What is this?
 
