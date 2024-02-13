@@ -31,6 +31,7 @@ jobs:
             run: |
               docker build . --tag ghcr.io/s3tupw1zard/palworld-pterodactyl-proton:latest
               docker push ghcr.io/s3tupw1zard/palworld-pterodactyl-proton:latest
+              docker build . --tag ghcr.io/s3tupw1zard/palworld-pterodactyl-proton:$(date +'%Y-%m-%d')
               docker push ghcr.io/s3tupw1zard/palworld-pterodactyl-proton:$(date +'%Y-%m-%d')
 
 
