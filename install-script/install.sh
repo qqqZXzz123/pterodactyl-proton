@@ -20,14 +20,6 @@ wget -O - \
 mkdir -p /mnt/server/.steam/steam/steamapps/compatdata/2394010
 cp -r /mnt/server/.steam/steam/compatibilitytools.d/GE-Proton8-28/files/share/default_pfx/* /mnt/server/.steam/steam/steamapps/compatdata/2394010
 
-# Install Winetricks
-#cd /tmp
-#mkdir -p /mnt/server/winetricks
-#curl -sSL -o /mnt/server/winetricks/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
-#chmod +x /mnt/server/winetricks/winetricks
-#cd /mnt/server
-#WINEPREFIX=/mnt/server/.wine /mnt/server/winetricks/winetricks vcrun2022 --force
-
 ## just in case someone removed the defaults.
 if [[ "${STEAM_USER}" == "" ]] || [[ "${STEAM_PASS}" == "" ]]; then
     echo -e "steam user is not set.\n"
@@ -44,8 +36,6 @@ cd /tmp
 mkdir -p /mnt/server/steamcmd
 chown -R root:root /mnt
 chown -R root:root /mnt/server
-#curl -sSL -o steamcmd.zip https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip
-#unzip steamcmd.zip -d /mnt/server/steamcmd
 
 cd /mnt/server/steamcmd
 curl curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
@@ -64,14 +54,26 @@ cd /mnt/server
 ## Install game using steamcmd.sh
 steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir /mnt/server/PalServer +login anonymous +app_update 2394010 validate +quit
 
-## install game using steamcmd.exe
-#WINEPREFIX=/mnt/server/.wine wine steamcmd/steamcmd.exe +force_install_dir ./PalServer +login ${STEAM_USER} ${STEAM_PASS} ${STEAM_AUTH} $( [[ "${WINDOWS_INSTALL}" == "1" ]] && printf %s '+@sSteamCmdForcePlatformType windows' ) +app_update ${SRCDS_APPID} $( [[ -z ${SRCDS_BETAID} ]] || printf %s "-beta ${SRCDS_BETAID}" ) $( [[ -z ${SRCDS_BETAPASS} ]] || printf %s "-betapassword ${SRCDS_BETAPASS}" ) ${INSTALL_FLAGS} validate +quit ## other flags may be needed depending on install. looking at you cs 1.6
-
 # Install VC_redist 2022
 cd /mnt/server
 WINEPREFIX=/mnt/server/.wine wine /mnt/server/PalServer/_CommonRedist/vcredist/2022/VC_redist.x64.exe /q /norestart
 WINEPREFIX=/mnt/server/.wine wine /mnt/server/PalServer/_CommonRedist/vcredist/2022/VC_redist.x86.exe /q /norestart
 
+cat <<EOT >> PalServer.sh
+#!/bin/bash
+
+# Updating PalServer if needed and if auto update is enabled
+if [ "$AUTO_UPDATE" -eq "1" ]; then
+    cd /home/container/PalServer
+    /home/container/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType windows +login anonymous +app_update 2394010 +quit
+fi
+
+# Starting PalServer
+cd /home/container
+$PROTON run $PALSERVER_EXECUTABLE -port {{SERVER_PORT}} -players {{MAX_PLAYERS}} -log -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS #EpicApp=PalServer
+EOT
+
+chmod +x PalServer.sh
 
 ## add below your custom commands if needed
 
