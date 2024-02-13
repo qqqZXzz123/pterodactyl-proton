@@ -25,6 +25,6 @@ This is where the Pterodactyl Egg is located, which can be imported into the pan
 ## Base
 I used the following project as a basis.
 
-[Palworld Server running using Proton in a docker container on GitHub](https://github.com/peepoturtle/palworld-docker-proton-server)
+[Palworld Server running using Proton in a docker container on GitHub from peepoturtle](https://github.com/peepoturtle/palworld-docker-proton-server)
 
 The install script is mostly based on the Palworld Pterodactyl Egg which is using the native Linux version.
