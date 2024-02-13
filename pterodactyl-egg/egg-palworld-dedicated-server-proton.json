@@ -4,13 +4,13 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-02-13T17:28:11+01:00",
+    "exported_at": "2024-02-13T18:21:49+01:00",
     "name": "Palworld Dedicated Server Proton",
     "author": "ultrakerle007@gmail.com",
     "description": "Palworld Dedicated Server for Windows using Proton-GE",
     "features": null,
     "docker_images": {
-        "~palserver-proton": "~palserver-proton"
+        "ghcr.io\/s3tupw1zard\/palworld-pterodactyl-proton:latest": "ghcr.io\/s3tupw1zard\/palworld-pterodactyl-proton:latest"
     },
     "file_denylist": [],
     "startup": "$PROTON run $PALSERVER_EXECUTABLE -port {{SERVER_PORT}} -players {{MAX_PLAYERS}} -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS",
