@@ -9,7 +9,8 @@ ENV STEAM_HOME="/home/container" \
     PALSERVERINJECT_EXECUTABLE="/home/container/PalServer/Pal/Binaries/Win64/PalServerInject.exe" \
     STEAM_USER="anonymous" \
     STEAM_PATH="/home/container/.steam/steam" \
-    APPID=$APPID
+    APPID=$APPID \
+    WINEDLLOVERRIDES="xinput1_3.dll=n,b"
 
 RUN adduser --disabled-password --home /home/container container
 
