@@ -27,8 +27,9 @@ jobs:
               password: ${{secrets.GITHUB_TOKEN}}
 
           - name: 'Build Inventory Image'
+            working-directory: ./Dockerfile/
             run: |
-              docker build ./Dockerfile --tag ghcr.io/s3tupw1zard/palworld-pterodactyl-proton:latest
+              docker build . --tag ghcr.io/s3tupw1zard/palworld-pterodactyl-proton:latest
               docker push ghcr.io/s3tupw1zard/palworld-pterodactyl-proton:latest
               docker push ghcr.io/s3tupw1zard/palworld-pterodactyl-proton:$(date +'%Y-%m-%d')
 
