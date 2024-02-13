@@ -6,7 +6,6 @@ ARG APPID=2394010
 
 ENV STEAM_HOME="/home/container" \
     PALSERVER_EXECUTABLE="/home/container/PalServer/Pal/Binaries/Win64/PalServer-Win64-Test-Cmd.exe" \
-    PALSERVERINJECT_EXECUTABLE="/home/container/PalServer/Pal/Binaries/Win64/PalServerInject.exe" \
     STEAM_USER="anonymous" \
     STEAM_PATH="/home/container/.steam/steam" \
     APPID=$APPID \
@@ -46,6 +45,9 @@ ENV DISPLAY :1
 
 RUN apt-get update \
     && apt-get -y install xserver-xorg-video-dummy x11-apps
+
+# Cleanup apt cache
+RUN rm -rf /var/lib/apt/lists/*
 
 USER container
 ENV USER=container HOME=/home/container
