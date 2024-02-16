@@ -47,7 +47,7 @@ RUN apt-get update \
     && apt-get -y install xserver-xorg-video-dummy x11-apps
 
 # Cleanup apt cache
-RUN rm -rf /var/lib/apt/lists/*
+RUN apt clean && rm -rf /var/lib/apt/lists/*
 
 USER container
 ENV USER=container HOME=/home/container
