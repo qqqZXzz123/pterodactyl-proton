@@ -70,7 +70,7 @@ fi
 
 # Starting PalServer
 cd /home/container
-\$PROTON run \$PALSERVER_EXECUTABLE -port={{SERVER_PORT}} -players={{MAX_PLAYERS}} -log -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS #EpicApp=PalServer
+\$PROTON run \$PALSERVER_EXECUTABLE "\$@" EPicApp=PalServer
 
 EOT
 
