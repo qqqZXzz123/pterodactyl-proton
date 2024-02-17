@@ -65,12 +65,12 @@ cat <<EOT >> PalServer.sh
 # Updating PalServer if needed and if auto update is enabled
 if [ "$AUTO_UPDATE" -eq "1" ]; then
     cd /home/container/PalServer
-    /home/container/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType windows +login anonymous +app_update 2394010 +quit
+    /home/container/steamcmd/steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir /mnt/server/PalServer +login anonymous +app_update 2394010 validate +quit
 fi
 
 # Starting PalServer
 cd /home/container
-$PROTON run $PALSERVER_EXECUTABLE -port {{SERVER_PORT}} -players {{MAX_PLAYERS}} -log -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS #EpicApp=PalServer
+\$PROTON run \$PALSERVER_EXECUTABLE -port={{SERVER_PORT}} -players={{MAX_PLAYERS}} -log -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS #EpicApp=PalServer
 EOT
 
 chmod +x PalServer.sh
