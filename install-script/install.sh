@@ -70,7 +70,11 @@ fi
 
 # Starting PalServer
 cd /home/container
+<<<<<<< HEAD
 \$PROTON run \$PALSERVER_EXECUTABLE -port={{SERVER_PORT}} -players={{MAX_PLAYERS}} -log -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS #EpicApp=PalServer
+=======
+\$PROTON run \$PALSERVER_EXECUTABLE -port {{SERVER_PORT}} -players {{MAX_PLAYERS}} -log -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS #EpicApp=PalServer
+>>>>>>> dab0cc749226025e421af59fb31aa6dac660dfae
 EOT
 
 chmod +x PalServer.sh
