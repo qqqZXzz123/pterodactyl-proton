@@ -70,7 +70,7 @@ fi
 
 # Starting PalServer
 cd /home/container
-\$PROTON run \$PALSERVER_EXECUTABLE "\$@" EPicApp=PalServer
+\$PROTON run \$PALSERVER_EXECUTABLE "\$@" EpicApp=PalServer
 
 EOT
 
