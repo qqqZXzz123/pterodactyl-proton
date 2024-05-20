@@ -28,6 +28,11 @@ jobs:
               registry: ghcr.io
               username: ${{github.actor}}
               password: ${{secrets.GITHUB_TOKEN}}
+              
+          - name: 'Make entrypoint.sh executable'
+            working-directory: ./Dockerfile/
+            run: |
+              chmod +x entrypoint.sh
 
           - name: 'Build Inventory Image'
             working-directory: ./Dockerfile/
