@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y gosu cron wget python3 libfreetype6
 ARG APPID=2394010
 
 ENV STEAM_HOME="/home/container" \
-    PALSERVER_EXECUTABLE="/home/container/PalServer/Pal/Binaries/Win64/PalServer-Win64-Test-Cmd.exe" \
+    PALSERVER_EXECUTABLE="/home/container/PalServer/Pal/Binaries/Win64/PalServer-Win64-Shipping-Cmd.exe" \
     STEAM_USER="anonymous" \
     STEAM_PATH="/home/container/.steam/steam" \
     APPID=$APPID \
