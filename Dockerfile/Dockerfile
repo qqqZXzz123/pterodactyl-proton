@@ -57,4 +57,6 @@ WORKDIR /home/container
 
 COPY entrypoint.sh /entrypoint.sh
 
+RUN /usr/bin/chmod +x /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
