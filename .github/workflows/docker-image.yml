@@ -37,7 +37,7 @@ jobs:
           - name: 'Build Inventory Image'
             working-directory: ./Dockerfile/
             run: |
-              docker build . --tag ghcr.io/qqqZXzz123/pterodactyl-proton:latest
-              docker push ghcr.io/qqqZXzz123/pterodactyl-proton:latest
+              docker build . --tag ghcr.io/qqqzxzz123/pterodactyl-proton:latest
+              docker push ghcr.io/qqqzxzz123/pterodactyl-proton:latest
 
 
