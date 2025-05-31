@@ -57,4 +57,4 @@ WORKDIR /home/container
 
 COPY entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD [ "/bin/bash", "/entrypoint.sh" ]
