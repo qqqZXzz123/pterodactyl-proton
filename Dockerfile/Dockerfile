@@ -34,7 +34,7 @@ RUN dpkg --add-architecture i386 && \
     wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key && \
     wget -nc -P /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bullseye/winehq-bullseye.sources && \
     apt-get update -y && \
-    apt install --no-install-recommends winehq-staging -y
+    apt install --install-recommends winehq-stable -y
 
 # Export Proton paths
 ENV STEAM_COMPAT_CLIENT_INSTALL_PATH=$STEAM_PATH
