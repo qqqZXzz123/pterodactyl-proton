@@ -52,7 +52,7 @@ ENV PROTON=${STEAM_PATH}/compatibilitytools.d/${PROTON_VERSION}/proton
 ENV DISPLAY :1
 
 RUN apt-get update \
-    && apt-get -y install xserver-xorg-video-dummy x11-apps
+    && apt-get -y install xserver-xorg-video-dummy x11-apps strace
 
 # Set up Winetricks
 RUN	            wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
