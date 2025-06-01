@@ -68,9 +68,6 @@ ENV             DISPLAY_DEPTH=16
 ENV             AUTO_UPDATE=1
 ENV             XVFB=1
 
-RUN stty -icrnl
-RUN 
-
 # Cleanup apt cache
 RUN apt clean && rm -rf /var/lib/apt/lists/*
 
