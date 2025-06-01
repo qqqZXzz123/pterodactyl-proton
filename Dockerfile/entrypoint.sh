@@ -3,18 +3,9 @@ cd /home/container
 
 # Output Current Wine Version
 wine --version
-proton --version
 
 # Information output
 echo "Current timezone: $(cat /etc/timezone)"
-
-# Make internal Docker IP address available to processes.
-INTERNAL_IP=$(ip route get 1 | awk '{print $(NF-2);exit}')
-export INTERNAL_IP
-
-if [[ $XVFB == 1 ]]; then
-        Xvfb :0 -screen 0 ${DISPLAY_WIDTH}x${DISPLAY_HEIGHT}x${DISPLAY_DEPTH} &
-fi
 
 # Install necessary to run packages
 echo "First launch will throw some errors. Ignore them"
