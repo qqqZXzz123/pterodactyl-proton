@@ -43,7 +43,7 @@ RUN mkdir -p /usr/local/proton-ge \
 # Клонирование и установка umu-launcher
 RUN git clone https://github.com/Open-Wine-Components/umu-launcher.git /tmp/umu-launcher \
     && cd /tmp/umu-launcher \
-    && pip3 install . \
+    && python3 -m pip install . \
     && rm -rf /tmp/umu-launcher
 
 # Настройка переменных окружения для Proton GE
