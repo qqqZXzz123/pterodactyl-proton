@@ -40,6 +40,12 @@ RUN mkdir -p /usr/local/proton-ge \
     | head -1 \
     | xargs -I {} curl -L {} | tar xz --strip-components=1
 
+# Клонирование и установка umu-launcher
+RUN git clone https://github.com/Open-Wine-Components/umu-launcher.git /tmp/umu-launcher \
+    && cd /tmp/umu-launcher \
+    && pip3 install . \
+    && rm -rf /tmp/umu-launcher
+
 # Настройка переменных окружения для Proton GE
 ENV PATH="/usr/local/proton-ge/dist/bin:${PATH}"
 ENV LD_LIBRARY_PATH="/usr/local/proton-ge/dist/lib:${LD_LIBRARY_PATH}"
