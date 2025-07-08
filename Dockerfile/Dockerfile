@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y \
     wget \
     xvfb \
     wine \
-    winetricks \
     && rm -rf /var/lib/apt/lists/*
 
 # Установка Proton GE (последняя версия)
