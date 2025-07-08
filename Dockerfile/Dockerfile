@@ -3,48 +3,38 @@ FROM ghcr.io/parkervcp/yolks:debian
 LABEL author="Michael Parker" maintainer="parker@pterodactyl.io"
 LABEL org.opencontainers.image.licenses=MIT
 
-# Установка необходимых пакетов
-RUN dpkg --add-architecture i386 \
-    && apt update -y \
-    && apt install -y --no-install-recommends \
-        gnupg2 \
-        numactl \
-        tzdata \
-        software-properties-common \
-        libntlm0 \
-        winbind \
-        xvfb \
-        xauth \
-        python3 \
-        python3-pip \
-        libncurses5:i386 \
-        libncurses6:i386 \
-        libsdl2-2.0-0 \
-        libsdl2-2.0-0:i386 \
-        cabextract \
-        curl \
-        lib32gcc-s1 \
-        ca-certificates \
-        xterm \
-        expect
+# Установка зависимостей
+RUN apt-get update && apt-get install -y \
+    git \
+    make \
+    scdoc \
+    python3 \
+    python3-pip \
+    python3-venv \
+    cargo \
+    cabextract \
+    wget \
+    xvfb \
+    wine \
+    winetricks \
+    vulkan-tools \
+    libvulkan1 \
+    libvulkan1:i386 \
+    mesa-vulkan-drivers \
+    mesa-vulkan-drivers:i386 \
+    && rm -rf /var/lib/apt/lists/*
 
-# Установка Winetricks
-RUN wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
-    && chmod +x /usr/sbin/winetricks
-
-# Установка Proton GE
-RUN mkdir -p /usr/local/proton-ge \
-    && cd /usr/local/proton-ge \
-    && curl -sL https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest \
-    | grep "browser_download_url.*\.tar\.gz" \
-    | cut -d '"' -f 4 \
-    | head -1 \
-    | xargs -I {} curl -L {} | tar xz --strip-components=1
+# Установка Proton GE (последняя версия)
+RUN mkdir -p /opt/proton-ge \
+    && cd /opt/proton-ge \
+    && wget -q $(curl -s https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest | grep "browser_download_url.*\.tar\.gz" | cut -d '"' -f 4 | head -1) \
+    && tar -xzf GE-Proton*.tar.gz --strip-components=1 \
+    && rm GE-Proton*.tar.gz
 
 # Клонирование и установка umu-launcher
 RUN git clone https://github.com/Open-Wine-Components/umu-launcher.git /tmp/umu-launcher \
     && cd /tmp/umu-launcher \
-    && python3 -m pip install . \
+    && pip3 install . \
     && rm -rf /tmp/umu-launcher
 
 # Настройка переменных окружения для Proton GE
