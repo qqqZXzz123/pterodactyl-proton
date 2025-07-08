@@ -17,11 +17,6 @@ RUN apt-get update && apt-get install -y \
     xvfb \
     wine \
     winetricks \
-    vulkan-tools \
-    libvulkan1 \
-    libvulkan1:i386 \
-    mesa-vulkan-drivers \
-    mesa-vulkan-drivers:i386 \
     && rm -rf /var/lib/apt/lists/*
 
 # Установка Proton GE (последняя версия)
